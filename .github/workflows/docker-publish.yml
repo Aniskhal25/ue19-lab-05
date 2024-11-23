@@ -1,4 +1,4 @@
-name: Simple Docker Build and Push
+name: Simple Docker Build, Scan, and Push
 
 on:
   push:
@@ -40,7 +40,11 @@ jobs:
           push: true  # Indique que l'image doit être poussée vers le registre
           tags: ghcr.io/aniskhal25/ue19-lab-05  # Tag de l'image Docker
           
-    
+      # Étape 5 : Scanner l'image Docker avec Trivy pour les vulnérabilités
+      - name: Scan Docker image for vulnerabilities
+        uses: aquasecurity/trivy-action@master  # Utilise Trivy pour scanner l'image Docker
+        with:
+          image-ref: ghcr.io/aniskhal25/ue19-lab-05  # Référence de l'image à scanner
           
 
       
